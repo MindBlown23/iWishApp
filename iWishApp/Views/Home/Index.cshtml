@@ -1,9 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<html>
+<head>
+    <style>
+     
+        #myDIV {
+            width: 300px;
+            height: 200px;
+            background: lavender;
+            background: url("https://i.pinimg.com/originals/7e/53/65/7e5365e8a1af255f1d197896af6e3509.jpg");
+            animation: mymove 5s infinite;
+            animation-delay: 2s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        @@keyframes mymove {
+            50% {
+                font: 40px bold;
+                from
+        {
+            top: 0px;
+            background-color: yellow;
+        }
 
+        to {
+            top: 200px;
+        }        
+    </style>
+</head>
+<body>
+<div id="myDIV"class="text-center">
+    <h1 class="display-4" style="color:rebeccapurple">POWERFUL AFFIRMATIONS</h1>
+    <p>You're Worth Than You Could Ever Imagine'</p>
+    </div>
+    </body>
+    </html>

@@ -8,16 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\**" />
     <Compile Remove="Views\EventCategory\**" />
     <Compile Remove="Views\Events\**" />
-    <Content Remove="ViewModels\**" />
     <Content Remove="Views\EventCategory\**" />
     <Content Remove="Views\Events\**" />
-    <EmbeddedResource Remove="ViewModels\**" />
     <EmbeddedResource Remove="Views\EventCategory\**" />
     <EmbeddedResource Remove="Views\Events\**" />
-    <None Remove="ViewModels\**" />
     <None Remove="Views\EventCategory\**" />
     <None Remove="Views\Events\**" />
   </ItemGroup>
@@ -34,7 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="NewFolder\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>

@@ -4,19 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>938a43b3-d7e3-4ebd-b031-137773244069</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\**" />
     <Compile Remove="Views\EventCategory\**" />
     <Compile Remove="Views\Events\**" />
-    <Content Remove="ViewModels\**" />
     <Content Remove="Views\EventCategory\**" />
     <Content Remove="Views\Events\**" />
-    <EmbeddedResource Remove="ViewModels\**" />
     <EmbeddedResource Remove="Views\EventCategory\**" />
     <EmbeddedResource Remove="Views\Events\**" />
-    <None Remove="ViewModels\**" />
     <None Remove="Views\EventCategory\**" />
     <None Remove="Views\Events\**" />
   </ItemGroup>
@@ -36,6 +33,7 @@
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0" />

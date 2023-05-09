@@ -62,10 +62,10 @@
     </div>
  </div>
  
-  <script src="https://accounts.google.com/gsi/client" onload="console.log('TODO: add onload function')"> </script> 
+  @*<script src="https://accounts.google.com/gsi/client" onload="console.log('TODO: add onload function')"> </script> *@
  
     
-   @* <div class="col-md-6 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-2">
         <section>
             <h3>Use another service to log in.</h3>
             <hr />
@@ -74,8 +74,7 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
+                            <a target="_blank" href="@ViewBag.response">Google Sign In</a>
                         </p>
                     </div>
                 }
@@ -95,8 +94,7 @@
             }
         </section>
     </div>
-</div>
-@**@
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

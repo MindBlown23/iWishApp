@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace iWishApp.ViewModels
 {
-    public class AddAffirmationHashTagViewModel
+    public class AddMotivationsHashTagViewModel
     {
-        public int AffirmationId { get; set; }
-        public Affirmations? Affirmations { get; set; }
+        public int MotivationsId { get; set; }
+        public Motivations? Motivations { get; set; }
         public List<SelectListItem>? HashTag { get; set; }
-        public int  HahTagId { get;set; }
+        public int  HashTagId { get;set; }
 
-        public  AddAffirmationHashTagViewModel(Affirmations theAffirmations,List<HashTag> possibleHashTag) 
+        public  AddMotivationsHashTagViewModel(Motivations theMotivations,List<HashTag> possibleHashTag) 
         {
             HashTag = new List<SelectListItem>();
 
@@ -22,10 +22,10 @@ namespace iWishApp.ViewModels
                     Text = hashtag.Name
                 });
             }
-            Affirmations = theAffirmations;
+            Motivations = theMotivations;
         }
 
-        public AddAffirmationHashTagViewModel() 
+        public AddMotivationsHashTagViewModel() 
         { 
 
         }

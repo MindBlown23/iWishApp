@@ -1,15 +1,36 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using iWishApp.Data;
 
 namespace iWishApp.Controllers
 {
-    public class AffirmationsController : Controller
+    public class MotivationsController : Controller
     {
+        private ApplicationDbContext context;
+
+        public MotivationsController(ApplicationDbContext dbcontext)
+        {
+            context = dbcontext;
+        }
         // GET: HomeController
         public ActionResult Index()
         {
             return View();
         }
+
+        public IActionResult Add()
+        {
+            List<MotivationsCategory>categories = context.Categories.ToList();
+            AddMotivationsViewModel addMotivationsViewModel = new AddMotivationsViewModel(categories);
+
+            return View(addMotivationsViewModel);
+        }
+
+        public IActionResult Add(AddMotivationsViewModel add)
+        {
+            return View();
+        }
+
 
         // GET: HomeController/Details/5
         public ActionResult Details(int id)
@@ -36,28 +57,6 @@ namespace iWishApp.Controllers
             {
                 return View();
             }
-        }
-
-        // GET: HomeController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: HomeController/Delete/5
         public ActionResult Delete(int id)

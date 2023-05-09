@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace iWishApp.Controllers
 {
-    public class AffirmationsCategoryController : Controller
+    public class MotivationsCategoryController : Controller
     {
         public ApplicationDbContext context;
 
-        public AffirmationsCategoryController(ApplicationDbContext dbContext)
+        public MotivationsCategoryController(ApplicationDbContext dbContext)
         {
             context = dbContext;
         }

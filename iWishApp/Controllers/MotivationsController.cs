@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using iWishApp.Data;
+using iWishApp.Models;
+using iWishApp.ViewModels;
+using System.Reflection;
 
 namespace iWishApp.Controllers
 {
@@ -26,57 +30,63 @@ namespace iWishApp.Controllers
             return View(addMotivationsViewModel);
         }
 
-        public IActionResult Add(AddMotivationsViewModel add)
+        public IActionResult Add(AddMotivationsViewModel addMotivationsViewModel)
         {
-            return View();
-        }
-
-
-        // GET: HomeController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: HomeController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: HomeController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                MotiivationsCategory theCategory = context.Categories.Find(addMotivationsViewModel.CategoryId);
+                Motivations newMotivations = new Motivations
+                {
+                    Title = addMotivationsViewModel.Title,
+                    Description = addMotivationsViewModel.Description,
+                    Picture = addMotivationsViewModel.Picture,
+                    Video = addMotivationsViewModel.Video,
+                    Category = theCategory
+                };
+
+                context.Motivations.Add(newMotivations);
+                context.SaveChanges();
+
+                return Redirect("/Motivations");
             }
-            catch
+                return View(addMotivationsViewModel);
+                
+        }
+
+            // GET: HomeController/Delete/5
+            public IActionResult Delete()
             {
+            ViewBag.motivations = context.Motivations.ToList();
+
                 return View();
             }
 
-        // GET: HomeController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+            // POST: HomeController/Delete/5
+            [HttpPost]
+            public IActionResult Delete(int[], motivationsIds)
+            {
+                foreach(int motivationsId in motivationsIds)
+                {
 
-        // POST: HomeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                    Motivations theMotivation = context.Motivations.Find(motivationsId);
+                    context.Motivations.Remove(theMotivation);
+                   
+                }
+
+                    context.SaveChanges();
+
+                 return Redirect("/Motivations");
             }
-            catch
-            {
-                return View();
-            }
-        }
+                public IActionResult Details(int id)
+                {
+                   Motivations theMotivations = context.Motivations
+                        .Include(m => m.Category)
+                        .Include(m => m.HashTag)
+                        .Single(m => m.Id == id);
+
+            MotivationsDetailViewModel viewModel = new EventDetailViewModel(newMotivations);
+                        
+                    return View(viewModel);
+                }
     }
 }

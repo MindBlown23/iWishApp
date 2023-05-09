@@ -2,14 +2,16 @@
 
 namespace iWishApp.Models
 {
-    public class Affirmations
+    public class Motivations
     {
         public string Title { get; set; }
 
         public string Description { get; set; }
 
         public string Picture { get; set; }
-        public AffirmationsCategory Category { get; set; }
+
+        public string Video { get;set; }
+        public MotivationsCategory Category { get; set; }
 
         public int CategoryId { get; set; }
 
@@ -17,14 +19,15 @@ namespace iWishApp.Models
 
         public ICollection<HashTag>? HashTag { get; set; }
 
-        public Affirmations(string title, string description, string picture) 
+        public Motivations(string title, string description, string picture) 
         {
             Title = title;
             Description = description;
             Picture = picture;
-            Tags = new List<HashTag>();
+            Video = Video;
+            HashTag = new List<HashTag>();
         }
-        public Affirmations() 
+        public Motivations() 
         {
 
         }
@@ -35,8 +38,8 @@ namespace iWishApp.Models
 
         public override bool Equals(object obj) 
         {
-            return obj is Affirmations @Affirmations
-                && Id == @Affirmations.Id;
+            return obj is Motivations @Motivations
+                && Id == @Motivations.Id;
         }
 
         public override int GetHashCode()

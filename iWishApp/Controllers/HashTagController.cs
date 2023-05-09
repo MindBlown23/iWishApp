@@ -21,48 +21,54 @@ namespace iWishApp.Controllers
         }
 
         [HttpPost]
+        public IActionResult Add()
+        {
+            HashTag hashtag = new HashTag();
+            return View(hashtag);
+        }
+
         public IActionResult Add(HashTag hashtag)
         {
             if (ModelState.IsValid)
             {
                 context.HashTag.Add(hashtag);
                 context.SaveChanges();
-                return Redirect("/HashTag");
+                return Redirect("/HashTag/");
             }
             return View("Add", hashtag);
         }
-        public IActionResult AddAffirmations(int id)
+            public IActionResult AddMotivations(int id)
         {
-            Affirmations theAffirmations = context.Affirmations.Find(id);
+            Motivations theMotivations = context.Motivations.Find(id);
             List<HashTag> possibleHashTag = context.HashTag.ToList();
 
-            AddAffirmationHashTagViewModel viewModel = new AddAffirmationHashTagViewModel(theAffirmations, possibleHashTag);
+            AddMotivationsHashTagViewModel viewModel = new AddMotivationsHashTagViewModel(theMotivations, possibleHashTag);
 
             return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult AddAffirmations(AddAffirmationHashTagViewModel viewModel)
+        public IActionResult AddMotivations(AddMotivationsHashTagViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                int affirmationsId = viewModel.AffirmationsId;
+                int motivationsId = viewModel.MotivationsId;
                 int hashtagId = viewModel.HashTagId;
 
-                Affirmations theAffirmation = context.Affirmations.Include(p => p.HashTag).Where(e => e.Id == affirmationsId).First();
+                Motivations theMotivations = context.Motivations.Include(p => p.HashTag).Where(e => e.Id == motivationsId).First();
                 HashTag theHashTag = context.HashTag.Where(t => t.Id == hashtagId).First();
 
-                theAffirmations.HashTag.Add(theHashTag);
+                theMotivations.HashTag.Add(theHashTag);
 
                 context.SaveChanges();
 
-                return Redirect("/Affirmation/Detail/" + affirmationsId);
+                return Redirect("/Motivations/Detail/" + motivationsId);
             }
             return View(viewModel );
         }
         public IActionResult Detail(int id) 
         {
-            HashTag theHashTag = context.HashTag.Include(e => e.Affirmations).Where(t => t.Id == id).First();
+            HashTag theHashTag = context.HashTag.Include(e => e.Motivations).Where(t => t.Id == id).First();
 
             return View(theHashTag);
         }

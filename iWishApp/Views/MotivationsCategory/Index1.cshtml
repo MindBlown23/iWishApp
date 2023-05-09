@@ -1,4 +1,4 @@
-﻿@model List<iWishApp.Models.AffirmationsCategory>
+﻿@model List<iWishApp.Models.MotivationsCategory>
 
 <h1>All Event Categories</h1>
 
@@ -13,7 +13,7 @@ else
             <th>Id
              <th> Category Name</th>
         </tr>
-        @foreach (AffirmationsCategory category in Model)
+        @foreach (MotivationsCategory category in Model)
         {
             <tr>
                 <td>@category.Id</td>  

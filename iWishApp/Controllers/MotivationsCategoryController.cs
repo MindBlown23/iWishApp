@@ -16,34 +16,34 @@ namespace iWishApp.Controllers
         }
         public ActionResult Index()
         {
-            List<AffirmationsCategory> categories = context.Affirmations.ToList();
+            List<MotivationsCategory> categories = context.Categories.ToList();
             return View(categories);
         }
 
         // GET: AffirmationsController/Add
         public IActionResult Create()
         {
-            AddAffirmationsCategoryViewModel addAffirmationsCategoryViewModel = addAffirmationsCategoryViewModel();
+            AddMotivationsCategoryViewModel addMotivationsCategoryViewModel = addMotivationsCategoryViewModel();
 
-            return View(addAffirmationsCategoryViewModel);
+            return View(addMotivationsCategoryViewModel);
         }
         [HttpPost]
         // GET: HomeController/Create
-        public IActionResult ProcessCreateAffirmationsCategoryForm(AddAffirmationsCategoryViewModel addAffirmationsCategoryViewModel)
+        public IActionResult ProcessCreateMotivationsCategoryForm(AddMotivationsCategoryViewModel addMotivationsCategoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                AffirmationsCategory newCategory = new AffirmationsCategory
+                MotivationsCategory newCategory = new MotivationsCategory
                 {
-                    Name = addAffirmationsCategoryViewModel.Name,
+                    Title = addMotivationsCategoryViewModel.Title,
                 };
 
                 context.Categories.Add(newCategory);
                 context.SaveChanges();
 
-                return Redirect("/AffirmationsCategory");
+                return Redirect("/MotivationsCategory");
             }
-            return View("Create", addAffirmationsCategoryViewModel);
+            return View("Create", addMotivationsCategoryViewModel);
         }
     }
 }

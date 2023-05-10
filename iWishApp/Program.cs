@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Google;
+//using Microsoft.AspNetCore.Authentication.Google;
 using iWishApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var config = builder.Configuration;
-var services = builder.Services; 
+//var config = builder.Configuration;
+//var services = builder.Services; 
 var connectionString = "server=localhost;user=wishapp;password=cashmoney2000;database=user_login";
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 32));
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString, serverVersion));
+builder.Services.AddDbContext<ApplicationDbContext>(dbContextOptions => dbContextOptions.UseMySql(connectionString, serverVersion));
 builder.Services.AddDefaultIdentity<IdentityUser>
 (options =>
 {
@@ -22,13 +22,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication().AddGoogle(options =>
-   {
-       IConfigurationSection googleAuthNSection =
-       config.GetSection("Authentication:Google");
-       options.ClientId = googleAuthNSection["ClientId"];
-       options.ClientSecret = googleAuthNSection["ClientSecret"];
-   });
+//builder.Services.AddAuthentication().AddGoogle(options =>
+//   {
+//       IConfigurationSection googleAuthNSection =
+//       config.GetSection("Authentication:Google");
+//       options.ClientId = googleAuthNSection["ClientId"];
+//       options.ClientSecret = googleAuthNSection["ClientSecret"];
+//   });
 var app = builder.Build();
 
 /*//Add services to the container.

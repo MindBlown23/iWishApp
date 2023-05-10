@@ -34,7 +34,7 @@ namespace iWishApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                MotiivationsCategory theCategory = context.Categories.Find(addMotivationsViewModel.CategoryId);
+                MotivationsCategory theCategory = context.Categories.Find(addMotivationsViewModel.CategoryId);
                 Motivations newMotivations = new Motivations
                 {
                     Title = addMotivationsViewModel.Title,
@@ -63,7 +63,7 @@ namespace iWishApp.Controllers
 
             // POST: HomeController/Delete/5
             [HttpPost]
-            public IActionResult Delete(int[], motivationsIds)
+            public IActionResult Delete(int[] motivationsIds)
             {
                 foreach(int motivationsId in motivationsIds)
                 {
@@ -84,7 +84,7 @@ namespace iWishApp.Controllers
                         .Include(m => m.HashTag)
                         .Single(m => m.Id == id);
 
-            MotivationsDetailViewModel viewModel = new EventDetailViewModel(newMotivations);
+            MotivationsDetailViewModel viewModel = new MotivationsDetailViewModel(theMotivations);
                         
                     return View(viewModel);
                 }

@@ -10,24 +10,24 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole
 
     public DbSet<Motivations> Motivations { get; set; } 
     public DbSet<MotivationsCategory> Categories { get; set; }
-    public DbSet<HashTag> HashTags { get;set; } 
+    public DbSet<HashTag> HashTag { get;set; } 
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }
-}
-protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Motivations>()
         .HasOne(p => p.Category)
-        .WithMany(b => b.motivations);
+        .WithMany(b => b.Motivations);
 
     modelBuilder.Entity<Motivations>()
-        .HasMany(p => p.HashTags)
+        .HasMany(p => p.HashTag)
         .WithMany(p => p.Motivations)
         .UsingEntity(j => j.ToTable("MotivationsTags"));
     base.OnModelCreating(modelBuilder);
 }
-
+}
 

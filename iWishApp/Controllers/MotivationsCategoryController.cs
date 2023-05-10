@@ -23,7 +23,7 @@ namespace iWishApp.Controllers
         // GET: AffirmationsController/Add
         public IActionResult Create()
         {
-            AddMotivationsCategoryViewModel addMotivationsCategoryViewModel = addMotivationsCategoryViewModel();
+            AddMotivationsCategoryViewModel addMotivationsCategoryViewModel = new AddMotivationsCategoryViewModel();
 
             return View(addMotivationsCategoryViewModel);
         }

@@ -10,7 +10,7 @@ namespace iWishApp.Models
         public string Name { get; set; }
         public int Id { get; set; }
 
-        public ICollection<Motivations> Affirmations { get; set; }
+        public ICollection<Motivations> Motivations { get; set; }
         public HashTag(string name) 
         { 
             Name = name;
